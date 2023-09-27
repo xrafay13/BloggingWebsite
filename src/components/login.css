@@ -1,0 +1,75 @@
+
+  
+  .login-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%; 
+    background-color: black;
+    overflow: hidden;
+
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .white-form,
+  .pink-form {
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    padding: 20px;
+  }
+  
+  .pink-form {
+    background-color: crimson;
+  }
+  
+  .filled-input {
+   
+    border: none;
+    
+    width: 100%;
+  }
+
+  .login-button{
+    margin-top: 2rem;
+  }
+  .login-button:hover{
+        border-color: orange;
+  }
+
+  .signup-button{
+margin-bottom: -2rem;
+
+  }
+
+  .signup-button:hover{
+    border-color: coral;
+  }
+  
+  .passwordInput{
+        margin-top: 1rem;   
+  }
+
+  .emailInput{
+    margin-top:2rem
+  }
+
+  ::placeholder {
+    color: red; /* Change to your preferred color */
+  }
+
+  
+
+
+  

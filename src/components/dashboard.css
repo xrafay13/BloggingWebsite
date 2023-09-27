@@ -1,0 +1,15 @@
+.header{
+    background-color: chocolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.button:hover{
+    border-color: grey;
+}
+
+.header-buttons{
+    display: flex;
+}

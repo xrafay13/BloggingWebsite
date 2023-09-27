@@ -1,0 +1,60 @@
+.addBlog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow:hidden
+    
+  }
+
+  .addBlog-form{
+    border: 2px solid salmon;
+    border-style: dotted;
+    height:fit-content;
+    margin-top: 10rem;
+    
+  }
+  
+  .addBlog-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    padding: 20px;
+    position: sticky;
+    background-color: white;
+    z-index: 1;
+    margin-top: 5rem;
+  }
+  
+  .addBlog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin-top:1rem; /* Add margin to push content below the header */
+  }
+  
+  .title-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .richbox {
+    width: 100%;
+    max-height: fit-content; /* Set max height for rich text box */
+     /* Enable vertical scroll when content overflows */
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin-bottom: 1rem;
+    
+  }
+
+  .content-heading{
+    font-size: 20px;
+    font-weight: bold;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  
