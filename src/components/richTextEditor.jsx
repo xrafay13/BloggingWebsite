@@ -67,7 +67,9 @@ function RichText({ editorProp }) {
         </RichTextEditor.ControlsGroup>
       </RichTextEditor.Toolbar>
 
-      <RichTextEditor.Content />
+      <RichTextEditor.Content
+        style={{ maxHeight: "200px", overflowY: "auto" }}
+      />
     </RichTextEditor>
   );
 }

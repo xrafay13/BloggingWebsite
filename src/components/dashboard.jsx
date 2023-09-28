@@ -25,6 +25,7 @@ function Dashboard() {
             Add Blogs
           </Button>
           <Button
+            onClick={() => navigate("/dashboard/viewBlog")}
             className="button"
             style={{ marginRight: "1rem", border: "3px solid white" }}
             variant="outline"

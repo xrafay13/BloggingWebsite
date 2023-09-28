@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, Button } from "@mantine/core";
 import "./addBlog.css";
 import RichText from "./richTextEditor";
@@ -17,6 +17,7 @@ import Superscript from "@tiptap/extension-superscript";
 import SubScript from "@tiptap/extension-subscript";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
+import ViewBlogs from "./viewBlogs";
 const content = '<h2 style="text-align: center;">..</h2>';
 
 function AddBlog() {
@@ -40,19 +41,16 @@ function AddBlog() {
   const handlePublishClick = async () => {
     const imgs = ref(imgdb, `Imgs/${v4()}`);
 
-    uploadBytes(imgs, image).then((data) => {
-      console.log(data, "imgs");
-      getDownloadURL(data.ref).then((val) => {
-        setImageURL(val);
-        console.log(imageURL);
-      });
-    });
+    const data = await uploadBytes(imgs, image);
+    const val = await getDownloadURL(data.ref);
+    setImageURL(val);
+    console.log(val);
 
     const valRef = collection(txtdb, "formData");
     await addDoc(valRef, {
       titleVal: title,
       bodyVal: editor.getText(),
-      imgURL: imageURL,
+      imgURL: val,
     });
 
     alert("Data added successfully");
@@ -86,22 +84,26 @@ function AddBlog() {
           </div>
           <p className="content-heading">Upload Image</p>
         </div>
-      </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "20rem",
-          marginTop: "-1rem",
-        }}
-      >
-        <DropZone image={image} setImage={setImage} />
-        <Button color="red" onClick={() => handlePublishClick()}>
-          Publish
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "20rem",
+            marginTop: "-1rem",
+          }}
+        >
+          <DropZone image={image} setImage={setImage} />
+          <Button
+            style={{ marginTop: "2rem" }}
+            color="red"
+            onClick={() => handlePublishClick()}
+          >
+            Publish
+          </Button>
+        </div>
       </div>
     </div>
   );
