@@ -17,13 +17,16 @@ import Superscript from "@tiptap/extension-superscript";
 import SubScript from "@tiptap/extension-subscript";
 import { getDownloadURL, ref, uploadBytes } from "@firebase/storage";
 import { addDoc, collection } from "firebase/firestore";
-import ViewBlogs from "./viewBlogs";
+import { auth } from "./firebase";
+import { updateCurrentUser } from "firebase/auth";
 const content = '<h2 style="text-align: center;">..</h2>';
 
 function AddBlog() {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [imageURL, setImageURL] = useState("");
+
+  const user = auth.currentUser;
 
   const editor = useEditor({
     extensions: [
@@ -48,6 +51,7 @@ function AddBlog() {
 
     const valRef = collection(txtdb, "formData");
     await addDoc(valRef, {
+      userId: user.uid,
       titleVal: title,
       bodyVal: editor.getText(),
       imgURL: val,
@@ -91,14 +95,25 @@ function AddBlog() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: "20rem",
+            width: "50rem",
             marginTop: "-1rem",
           }}
         >
           <DropZone image={image} setImage={setImage} />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Button
-            style={{ marginTop: "2rem" }}
+            style={{ marginTop: "2rem", marginBottom: "2rem" }}
             color="red"
+            size="lg"
             onClick={() => handlePublishClick()}
           >
             Publish

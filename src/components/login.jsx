@@ -27,17 +27,16 @@ function Login() {
         alert("Check your G-Mail");
       });
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
   const handleLogin = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      alert("SIGNIN SUCCESSFUL");
+      navigate("./dashboard/addBlog");
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
   };
 

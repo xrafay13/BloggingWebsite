@@ -7,7 +7,7 @@ import {
   PasswordInput,
 } from "@mantine/core";
 import { useNavigate } from "react-router-dom/dist";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase";
 
 function Signup() {
@@ -25,15 +25,21 @@ function Signup() {
     }
 
     try {
-      const user = await createUserWithEmailAndPassword(
+      const user1 = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
         confirmPassword
       );
-      console.log(user);
+      const user = user1.user;
+      await updateProfile(user, {
+        displayName: fullName,
+      });
+
+      alert("SIGNUP SUCCESSFUL");
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      alert(error.message);
     }
   };
   return (
